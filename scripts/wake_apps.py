@@ -7,6 +7,7 @@ from playwright.sync_api import sync_playwright
 APPS = [
     "https://partycohesion.streamlit.app/",
     "https://campaign-money.streamlit.app/",
+    "https://grant-matcher.streamlit.app/",
 ]
 WAKE_BUTTON = "button:has-text('get this app back up')"
 
