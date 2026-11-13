@@ -24,3 +24,10 @@ jobs:
           python -m playwright install --with-deps chromium
       - name: Visit the apps
         run: python scripts/wake_apps.py
+      - name: Keep this schedule from expiring
+        # GitHub turns off schedules in public repos after 60 days with no activity.
+        # Re-enabling the workflow resets that counter, so no filler commits are needed.
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X PUT "repos/${{ github.repository }}/actions/workflows/keep-apps-awake.yml/enable"
