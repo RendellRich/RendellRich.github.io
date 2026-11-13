@@ -4,51 +4,295 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Rendell Rich | Data Scientist</title>
-<meta name="description" content="Rendell Rich, data scientist. Portfolio, PartyCohesion, Campaign Money by Industry, GitHub, and LinkedIn.">
+<meta name="description" content="Rendell Rich, data scientist. Eight years turning operational data into decisions, mostly in Python and SQL. Projects include PartyCohesion and Campaign Money by Industry.">
 <link rel="canonical" href="https://rendellrich.github.io/">
+<meta property="og:title" content="Rendell Rich | Data Scientist">
+<meta property="og:description" content="Eight years turning operational data into decisions, mostly in Python and SQL.">
+<meta property="og:url" content="https://rendellrich.github.io/">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#131715">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root { color-scheme: light; }
+  :root {
+    --bg: #131715;
+    --surface: #1c211f;
+    --line: #2b322f;
+    --text: #ecefea;
+    --muted: #b6bdb8;
+    --accent: #3fb68b;
+    --accent-ink: #0f1a15;
+    --serif: "Fraunces", Georgia, "Times New Roman", serif;
+    --sans: "Work Sans", -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color-scheme: dark;
+  }
   * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
   body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background: #fafafa;
-    color: #1a1a1a;
-    display: flex;
-    min-height: 100vh;
-    align-items: center;
-    justify-content: center;
-    padding: 24px;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
   }
-  main { max-width: 440px; width: 100%; }
-  h1 { font-size: 1.6rem; font-weight: 600; margin: 0 0 4px; }
-  p.role { margin: 0 0 28px; color: #555; font-size: 1rem; }
-  ul { list-style: none; padding: 0; margin: 0; }
-  li + li { margin-top: 10px; }
-  a.card {
-    display: block;
-    padding: 14px 16px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background: #fff;
-    color: #1a1a1a;
-    text-decoration: none;
+  a { color: inherit; }
+  a:focus-visible, .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+  img { display: block; max-width: 100%; height: auto; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  .skip { position: absolute; left: -9999px; }
+  .skip:focus { left: 16px; top: 16px; background: var(--text); color: var(--bg); padding: 8px 12px; z-index: 10; }
+
+  /* Header */
+  header.site {
+    position: sticky; top: 0; z-index: 5;
+    background: rgba(19, 23, 21, 0.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
   }
-  a.card:hover, a.card:focus { border-color: #1a1a1a; outline: none; }
-  a.card span { display: block; color: #666; font-size: 0.875rem; margin-top: 2px; }
+  header.site .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+  .brand { font-family: var(--serif); font-weight: 600; font-size: 1.15rem; text-decoration: none; }
+  nav ul { list-style: none; display: flex; gap: 24px; margin: 0; padding: 0; }
+  nav a { text-decoration: none; color: var(--muted); font-size: 0.95rem; }
+  nav a:hover { color: var(--text); }
+
+  /* Hero */
+  .hero { padding: 96px 0 88px; }
+  .hero h1 {
+    font-family: var(--serif); font-weight: 600;
+    font-size: clamp(3rem, 9vw, 6rem);
+    line-height: 1; letter-spacing: -0.02em;
+    margin: 0 0 24px;
+  }
+  .hero p.lede { font-size: clamp(1.1rem, 2.2vw, 1.35rem); color: var(--muted); max-width: 34ch; margin: 0 0 36px; }
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn {
+    display: inline-block; padding: 12px 22px;
+    font-size: 0.95rem; font-weight: 500; letter-spacing: 0.02em;
+    text-decoration: none; border: 1px solid var(--text);
+  }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  .btn.primary:hover { background: #57c79f; border-color: #57c79f; }
+  .btn.ghost:hover { background: var(--text); color: var(--bg); }
+
+  /* Sections */
+  section { padding: 80px 0; border-top: 1px solid var(--line); }
+  h2 {
+    font-family: var(--serif); font-weight: 600;
+    font-size: clamp(2rem, 4.5vw, 2.75rem); line-height: 1.1;
+    margin: 0 0 40px;
+  }
+  h3 { font-family: var(--serif); font-weight: 600; margin: 0; }
+
+  /* Featured projects */
+  .feature {
+    display: grid; grid-template-columns: 1fr 300px; gap: 48px; align-items: start;
+    background: var(--surface); border: 1px solid var(--line);
+    padding: 48px; margin-bottom: 32px;
+  }
+  .feature h3 { font-size: clamp(1.9rem, 4vw, 2.5rem); line-height: 1.1; margin-bottom: 12px; }
+  .feature .question { font-family: var(--serif); font-size: 1.3rem; line-height: 1.3; margin: 0 0 20px; }
+  .feature p.body { color: var(--muted); margin: 0 0 28px; max-width: 58ch; }
+  .shot {
+    max-height: 560px; overflow: hidden;
+    border: 1px solid var(--line); border-radius: 14px; background: #0e1110;
+  }
+  .note { font-size: 0.85rem; color: var(--muted); margin: 14px 0 0; }
+
+  /* Earlier work */
+  .earlier-intro { color: var(--muted); margin: -24px 0 32px; max-width: 60ch; }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .item { background: var(--surface); border: 1px solid var(--line); display: flex; flex-direction: column; }
+  .item .thumb { aspect-ratio: 16 / 10; background: #fff; overflow: hidden; border-bottom: 1px solid var(--line); }
+  .item .thumb img { width: 100%; height: 100%; object-fit: cover; object-position: top left; }
+  .item .text { padding: 22px 22px 24px; display: flex; flex-direction: column; flex: 1; }
+  .item h3 { font-size: 1.35rem; line-height: 1.2; margin-bottom: 10px; }
+  .item p { color: var(--muted); font-size: 0.95rem; margin: 0 0 18px; flex: 1; }
+  .item .tools { font-size: 0.85rem; color: var(--muted); margin: 0 0 16px; flex: 0; }
+  .item a.link { color: var(--accent); text-decoration: none; font-weight: 500; font-size: 0.95rem; }
+  .item a.link:hover { text-decoration: underline; }
+
+  /* About */
+  .about { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
+  .about .intro { font-size: 1.15rem; margin: 0 0 28px; }
+  .about p { margin: 0 0 20px; color: var(--muted); }
+  .about p.closing { color: var(--text); }
+  dl { margin: 0; }
+  dt { font-weight: 600; margin-top: 22px; }
+  dt:first-child { margin-top: 0; }
+  dd { margin: 4px 0 0; color: var(--muted); }
+  h3.sub { font-size: 1.5rem; margin: 0 0 18px; }
+
+  /* Resume band */
+  .resume { background: #1f4d3c; border-top: none; text-align: center; padding: 72px 0; }
+  .resume h2 { margin-bottom: 24px; }
+  .resume .btn { border-color: var(--text); }
+
+  footer { border-top: 1px solid var(--line); padding: 28px 0; font-size: 0.9rem; color: var(--muted); }
+  footer .wrap { display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; }
+  footer ul { list-style: none; display: flex; gap: 20px; margin: 0; padding: 0; }
+  footer a { color: var(--text); text-decoration: none; }
+  footer a:hover { color: var(--accent); }
+
+  @media (max-width: 900px) {
+    .feature { grid-template-columns: 1fr; padding: 32px 24px; gap: 32px; }
+    .feature .shot { max-width: 320px; max-height: 480px; }
+    .grid { grid-template-columns: 1fr; }
+    .about { grid-template-columns: 1fr; gap: 40px; }
+  }
+  @media (max-width: 520px) {
+    nav ul { gap: 16px; }
+    .hero { padding: 64px 0 56px; }
+    section { padding: 56px 0; }
+  }
 </style>
 </head>
 <body>
-<main>
-  <h1>Rendell Rich</h1>
-  <p class="role">Data Scientist. Python, SQL, Power BI, Tableau. MS Data Science, Purdue (Dec 2026). Army veteran.</p>
-  <ul>
-    <li><a class="card" href="https://rendellrich28.wixsite.com/aboutme">Portfolio<span>Projects, dashboards, and resume</span></a></li>
-    <li><a class="card" href="https://rendellrich.github.io/partycohesion/">PartyCohesion<span>How members of Congress vote, since 2007</span></a></li>
-    <li><a class="card" href="https://campaign-money.streamlit.app">Campaign Money by Industry<span>Where Congress gets its campaign money, with measured accuracy</span></a></li>
-    <li><a class="card" href="https://github.com/RendellRich">GitHub<span>Code and project repos</span></a></li>
-    <li><a class="card" href="https://www.linkedin.com/in/rendellrich">LinkedIn<span>Profile and posts</span></a></li>
-  </ul>
+<a class="skip" href="#projects">Skip to projects</a>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="#top">Rendell Rich</a>
+    <nav aria-label="Main">
+      <ul>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#resume">Resume</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero"><div class="wrap">
+    <h1>Rendell Rich</h1>
+    <p class="lede">Data scientist. Eight years turning operational data into decisions, mostly in Python and SQL.</p>
+    <div class="actions">
+      <a class="btn primary" href="#projects">See projects</a>
+      <a class="btn ghost" href="https://e4a268b1-3e1e-47d3-950b-84b00a00043c.filesusr.com/ugd/6eb7c4_fab402f135d5490daf17c1d5e455bd69.pdf">Download resume</a>
+    </div>
+  </div></div>
+
+  <section id="projects">
+    <div class="wrap">
+      <h2>Projects</h2>
+
+      <article class="feature">
+        <div>
+          <h3>PartyCohesion</h3>
+          <p class="question">Do members of Congress vote the same way no matter who is president?</p>
+          <p class="body">A free, neutral website built on the official record of every House and Senate vote since 2007. It shows how often each member votes with their party, whether their votes change when the White House changes hands, and how their votes compare with what they said on the campaign trail and the floor of Congress. Built in Python with Streamlit, Plotly and pandas, refreshed automatically twice a week, with 109 automated tests.</p>
+          <div class="actions">
+            <a class="btn primary" href="https://partycohesion.streamlit.app">Open the live site</a>
+            <a class="btn ghost" href="https://github.com/RendellRich/partycohesion">Code on GitHub</a>
+          </div>
+          <p class="note">Free hosting puts the app to sleep when it is quiet. If you see a wake-up screen, it is back in about 30 seconds.</p>
+        </div>
+        <div class="shot"><img src="assets/img/partycohesion-phone.jpg" width="390" height="1240" alt="PartyCohesion home page on a phone: the question, a short explainer, a member search box, and a chart of the 450 House members." loading="lazy"></div>
+      </article>
+
+      <article class="feature">
+        <div>
+          <h3>Campaign Money by Industry</h3>
+          <p class="question">Where does Congress get its campaign money?</p>
+          <p class="body">Sorts the money members of Congress raise from individual donors by the industry each donor works in, using Federal Election Commission filings for 2022 and 2024. Accuracy is measured, not assumed: on a held-out sample, 83% of dollars land in the right industry and 6% in the wrong one. Built in Python with DuckDB, pandas and Streamlit.</p>
+          <div class="actions">
+            <a class="btn primary" href="https://campaign-money.streamlit.app">Open the live site</a>
+            <a class="btn ghost" href="https://github.com/RendellRich/campaign-money">Code on GitHub</a>
+          </div>
+          <p class="note">Same free hosting: allow about 30 seconds if the app needs to wake up.</p>
+        </div>
+        <div class="shot"><img src="assets/img/campaign-money-phone.jpg" width="595" height="1016" alt="Campaign Money home page on a phone: where every dollar from individual donors came from, split by industry." loading="lazy"></div>
+      </article>
+
+      <h2 style="margin-top:72px">Earlier work</h2>
+      <p class="earlier-intro">Dashboards and data cleaning from coursework and practice projects.</p>
+      <div class="grid">
+        <article class="item">
+          <div class="thumb"><img src="assets/img/homeschooling-map.jpg" width="1200" height="750" alt="Power BI map of homeschooled students by state, with the largest circles in Florida and Georgia." loading="lazy"></div>
+          <div class="text">
+            <h3>Homeschooling Population by State</h3>
+            <p>Homeschooled students by state and school year, 2017-18 through 2022-23. School district counts cleaned in Power Query and Excel, combined in SQL Server, and mapped in Power BI.</p>
+            <p class="tools">Power BI, SQL Server, Power Query, Excel</p>
+          </div>
+        </article>
+        <article class="item">
+          <div class="thumb"><img src="assets/img/grand-junction.jpg" width="1200" height="750" alt="Tableau line chart of Grand Junction GDP by year from 2001, with tabs for homes on the market, population and demographics." loading="lazy"></div>
+          <div class="text">
+            <h3>Grand Junction Investment Potential</h3>
+            <p>A Tableau dashboard tracking Grand Junction's GDP, homes on the market, population and demographics by year.</p>
+            <p class="tools">Tableau</p>
+            <a class="link" href="https://public.tableau.com/views/GrandJunctionInvestment/GrandJunctionGrowth">Open in Tableau Public</a>
+          </div>
+        </article>
+        <article class="item">
+          <div class="thumb"><img src="assets/img/economy-cost.jpg" width="1000" height="625" alt="Tableau bar chart of average childcare cost by state, with a state filter." loading="lazy"></div>
+          <div class="text">
+            <h3>Economy Cost Per Household</h3>
+            <p>Average childcare cost, food cost and median family income by state, in Tableau with a state filter.</p>
+            <p class="tools">Tableau</p>
+            <a class="link" href="https://public.tableau.com/views/Economycostperhousehold/Dashboard1">Open in Tableau Public</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap">
+      <h2>About</h2>
+      <div class="about">
+        <div>
+          <p class="intro">I am a data scientist with more than eight years of experience turning operational data into decisions. I work primarily in Python and SQL, and I am completing a Master of Science in Data Science at Purdue University, expected December 2026.</p>
+          <h3 class="sub">Experience</h3>
+          <dl>
+            <dt>United States Army, Sergeant</dt>
+            <dd>Trained and led soldiers, kept my team safe under pressure, and handled the administrative records and technical repairs that kept operations running.</dd>
+            <dt>Waste Management, Operations and Data Specialist</dt>
+            <dd>Used data to optimize processes and reduce costs, led diverse teams, and presented actionable insights to senior leadership.</dd>
+            <dt>Real estate, licensed agent and team lead</dt>
+            <dd>Closed over $150 million in transactions in a twelve month period, led a team of agents to top producer status across multiple Texas regions, and built SEO driven websites that generated organic leads.</dd>
+          </dl>
+        </div>
+        <div>
+          <h3 class="sub">Toolkit</h3>
+          <p>Python, SQL, Tableau, Power BI, Databricks, Streamlit</p>
+          <h3 class="sub">Certifications</h3>
+          <p>Google Data Analytics, Microsoft Power BI Data Analyst Associate, Tableau Desktop Specialist, SQL for Data Analysts, Lean Six Sigma Yellow Belt</p>
+          <h3 class="sub">Education</h3>
+          <dl>
+            <dt>Master of Science in Data Science, Purdue University</dt>
+            <dd>Expected December 2026. Machine learning, statistical modeling, data engineering, and applied analytics, with a capstone delivering a production forecasting solution for an industry client.</dd>
+            <dt>Bachelor of Science in Business, Data Analytics, Liberty University</dt>
+            <dd>May 2025, Dean's List. Minor in Information Systems. Statistics, data visualization, data modeling, database design, and business analytics.</dd>
+            <dt>Associate in Applied Science, Information Technology and Network Systems Administration, ITT Technical Institute</dt>
+            <dd>2015. National Technical Honors Society.</dd>
+          </dl>
+          <p class="closing" style="margin-top:28px">I am a father of five, which keeps me focused, efficient, and motivated to keep improving. I bring military discipline, business experience, and hands on data science to every problem I take on. Let's work together.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="resume" class="resume">
+    <div class="wrap">
+      <h2>Want the full picture?</h2>
+      <a class="btn ghost" href="https://e4a268b1-3e1e-47d3-950b-84b00a00043c.filesusr.com/ugd/6eb7c4_fab402f135d5490daf17c1d5e455bd69.pdf">Download my resume (PDF)</a>
+    </div>
+  </section>
 </main>
+
+<footer>
+  <div class="wrap">
+    <span>&copy; 2026 Rendell Rich</span>
+    <ul>
+      <li><a href="https://www.linkedin.com/in/rendellrich">LinkedIn</a></li>
+      <li><a href="https://github.com/RendellRich">GitHub</a></li>
+    </ul>
+  </div>
+</footer>
 </body>
 </html>
